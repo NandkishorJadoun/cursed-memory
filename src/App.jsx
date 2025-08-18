@@ -24,9 +24,12 @@ export default function App() {
   const [best, setBest] = useState(0);
 
   useEffect(() => {
+    let ignore = false;
+    if (ignore) return;
     fetch(API)
       .then((res) => res.json())
       .then((json) => {
+        if (ignore) return;
         const rawData = json.data;
         const cleanData = rawData
           .filter((charData) => targetNames.includes(charData.character.name))
@@ -40,10 +43,13 @@ export default function App() {
 
         setData(shuffle(cleanData));
       });
+
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   const score = cards.length;
-  console.count("App render");
 
   return (
     <>
@@ -64,7 +70,7 @@ export default function App() {
               setData(shuffle(data));
               const id = char.id;
               if (cards.includes(id)) {
-                cards.length > best && setBest(cards.length);
+                setBest(Math.max(best, cards.length));
                 setCards([]);
               } else {
                 setCards([...cards, id]);
