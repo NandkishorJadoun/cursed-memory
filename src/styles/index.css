@@ -1,0 +1,142 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: linear-gradient(135deg, #1b0c2e, #40196f, #0d0d0d);
+
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#root {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    margin: 0 auto;
+
+}
+
+h1,
+p {
+    color: #e0e0e0;
+    font-weight: bold;
+
+}
+
+a {
+    color: #a37ddc;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+p {
+    font-size: 1.1rem;
+}
+
+header,
+footer {
+    background-color: rgba(12, 12, 12, 0.25);
+    padding: 1.5rem;
+}
+
+header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    border-bottom: 2px solid #333;
+}
+
+.loading{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding: 1.5rem;
+    gap: 1.5rem;
+}
+
+.card {
+    position: relative;
+    text-align: center;
+    font-weight: bold;
+    border: 2px solid #5c4f6b;
+}
+
+.card img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.card p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+}
+
+.card:hover {
+    box-shadow: 0 0 20px 10px #4d2b79;
+}
+
+footer {
+    border-top: 2px solid #333;
+}
+
+footer p {
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    header,
+    footer {
+        padding: 1rem;
+    }
+
+    main {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .card {
+        width: 120px;
+        border-radius: 20px;
+
+    }
+
+    .card img {
+        border-radius: 20px;
+    }
+
+    .card p {
+        font-size: 0.8rem;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+}
