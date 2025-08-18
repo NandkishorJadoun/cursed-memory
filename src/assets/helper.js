@@ -1,3 +1,20 @@
+export const API = "https://api.jikan.moe/v4/manga/113138/characters";
+
+export const targetNames = [
+  "Fushiguro, Megumi",
+  "Gojou, Satoru",
+  "Itadori, Yuuji",
+  "Kugisaki, Nobara",
+  "Hanami",
+  "Mahito",
+  "Uraume",
+  "Jougo",
+  "Panda",
+  "Okkotsu, Yuuta",
+  "Iori, Utahime",
+  "Inumaki, Toge",
+];
+
 export function shuffle(array) {
   const arr = array.slice();
   let currentIndex = arr.length;
