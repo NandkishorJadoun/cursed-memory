@@ -1,11 +1,28 @@
 import { useEffect, useState } from "react";
-import { shuffle, prettyName, targetNames, API } from "./assets/helper";
-import Card from "./components/Card";
+import { shuffle, prettyName, targetNames, API } from "./assets/helper.js";
+import Card from "./components/Card.js";
 import "./styles/index.css";
 
+interface CharacterSource {
+  character: {
+    name: string;
+    images: {
+      webp: {
+        image_url: string;
+      };
+    };
+  };
+}
+
+interface CharData {
+  id: string;
+  name: string;
+  image: string;
+}
+
 export default function App() {
-  const [data, setData] = useState([]);
-  const [cards, setCards] = useState([]);
+  const [data, setData] = useState<CharData[]>([]);
+  const [cards, setCards] = useState<string[]>([]);
   const [best, setBest] = useState(0);
 
   useEffect(() => {
@@ -15,10 +32,12 @@ export default function App() {
       .then((res) => res.json())
       .then((json) => {
         if (ignore) return;
-        const rawData = json.data;
-        const cleanData = rawData
-          .filter((charData) => targetNames.includes(charData.character.name))
-          .map((charData) => {
+        const rawData: CharacterSource[] = json.data;
+        const cleanData: CharData[] = rawData
+          .filter((charData: CharacterSource) =>
+            targetNames.includes(charData.character.name)
+          )
+          .map((charData: CharacterSource) => {
             return {
               id: prettyName(charData.character.name),
               name: prettyName(charData.character.name),
@@ -45,7 +64,7 @@ export default function App() {
           image={char.image}
           handleCardClick={() => {
             setData(shuffle(data));
-            const id = char.id;
+            const { id } = char;
             if (cards.includes(id)) {
               setBest(Math.max(best, cards.length));
               setCards([]);
